@@ -58,8 +58,6 @@ const store = createStore({
         };
         
         getFullData.push(JuegoYOpinionUnificada)
-        console.log(getFullData)
-        debugger
       });
       return getFullData
     },

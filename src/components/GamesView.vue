@@ -19,7 +19,6 @@
                 <li class="list-group-item">
                   Actualizacion: {{ juego.updated }}
                 </li>
-                <li class="list-group-item">{{juego.id}}</li>
               </ul>
               <div class="card-footer d-flex justify-content-center">
                 <button @click="gameSelected = juego.id"
@@ -39,7 +38,6 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            {{ gameSelected }}
             <div>
               <h4>Agregar una opinion para</h4>
               <hr />
@@ -59,7 +57,10 @@
                 ></textarea>
               </div>
               <div class="my-2">
-                <button @click="agregarOpinion" class="btn btn-primary">
+                <button 
+                data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                @click="agregarOpinion" class="btn btn-primary">
                   Agregar
                 </button>
                 {{opinion}}

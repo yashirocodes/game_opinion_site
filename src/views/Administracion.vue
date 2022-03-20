@@ -1,6 +1,11 @@
 <template>
   <div>
-      <div class="container my-3">
+    <div class="container my-3">
+      
+      <!-- <div class="alert alert-danger text-center" role="alert">
+        
+       <h5><i class="bi bi-exclamation-circle"></i>  No hay Opiniones para mostrar</h5>
+      </div> -->
       <table class="table">
         <thead>
           <tr>
@@ -12,20 +17,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr
-            v-for="({ opinion, juego }, i) in getJuegosAndOpiniones"
-            :key="i"
-          >
+          <tr v-for="({ opinion, juego }, i) in getJuegosAndOpiniones" :key="i" > 
             <td>{{ opinion.id }}</td>
             <td>{{ opinion.usuario.nombre }}</td>
             <td>{{ juego.name }}</td>
             <td>{{ opinion.descripcion }}</td>
             <td>
-              <button class="btn btn-warning"
-              @click="irAEditarOpinion(opinion.id)"
-              >Editar</button>
               <button
-                class="btn btn-danger"
+                class="btn btn-warning"
+                @click="irAEditarOpinion(opinion.id)"
+              >
+                Editar
+              </button>
+              <button
+                class="btn btn-danger ms-2"
                 @click="eliminar_Opinion(opinion.id)"
               >
                 Eliminar
@@ -39,10 +44,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex"
+import { mapGetters, mapActions } from "vuex";
 export default {
-
- computed: {
+  data(){
+    return{
+      table: true,
+      alert: true
+    }
+  },
+  computed: {
     ...mapGetters(["getJuegosAndOpiniones"]),
   },
   methods: {
@@ -51,10 +61,8 @@ export default {
       this.$router.push(`/editar/${id}`);
     },
   },
- 
-}
+};
 </script>
 
 <style>
-
 </style>
