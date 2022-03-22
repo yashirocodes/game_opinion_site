@@ -1,20 +1,27 @@
 <template>
   <div>
-    <h1>Editando la opinion del juego</h1>
-
-    <div class="container">
-      <div class="form">
-        <div>
-          <label class="form-label">Usuario</label>
-          <input class="form-control" v-model="opinion.usuario.nombre" />
+    <div v-if="!opinion">No existe una opinión con este ID</div>
+    <div v-else>
+      <h1 class="text-center my-4">Editando la opinion del juego</h1>
+      <div class="container">
+        <div class="form">
+          <div>
+            <label class="form-label">Usuario</label>
+            <input class="form-control" v-model="opinion.usuario.nombre" />
+          </div>
+          <div>
+            <label class="form-label">Descripcion</label>
+            <textarea
+              class="form-control"
+              v-model="opinion.descripcion"
+            ></textarea>
+          </div>
+          <div class="mt-3">
+            <button class="btn btn-success" @click="modificarOpinion">
+              Guardar cambios
+            </button>
+          </div>
         </div>
-        <div>
-          <label class="form-label">Descripcion</label>
-          <textarea class="form-control" v-model="opinion.descripcion"></textarea>
-        </div>
-        <div class="mt-3">
-        <button @click="modificarOpinion">Guardar cambios</button>
-      </div>
       </div>
     </div>
   </div>
@@ -35,11 +42,15 @@ export default {
   computed: {
     ...mapGetters(["getOpinionById"]),
     opinion() {
-      const { id } = this;
-      return {
-        ...this.getOpinionById(+id),
-        usuario: { ...this.getOpinionById(+id).usuario },
-      };
+      try {
+        const { id } = this;
+        return {
+          ...this.getOpinionById(+id),
+          usuario: { ...this.getOpinionById(+id).usuario },
+        };
+      } catch (error) {
+        return undefined;
+      }
     },
   },
 };

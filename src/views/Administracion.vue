@@ -2,11 +2,11 @@
   <div>
     <div class="container my-3">
       
-      <!-- <div class="alert alert-danger text-center" role="alert">
-        
-       <h5><i class="bi bi-exclamation-circle"></i>  No hay Opiniones para mostrar</h5>
-      </div> -->
-      <table class="table">
+      <div v-if="existenOpiniones" class="alert alert-danger text-center">
+       <h5><i class="bi bi-exclamation-circle"></i>  No hay Opiniones para editar</h5>
+      </div>
+
+      <table v-else class="table">
         <thead>
           <tr>
             <th>ID</th>
@@ -48,18 +48,20 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data(){
     return{
-      table: true,
-      alert: true
     }
   },
   computed: {
     ...mapGetters(["getJuegosAndOpiniones"]),
+    existenOpiniones(){
+      return !this.getJuegosAndOpiniones.length
+    }
   },
   methods: {
     ...mapActions(["eliminar_Opinion"]),
     irAEditarOpinion(id) {
       this.$router.push(`/editar/${id}`);
     },
+    
   },
 };
 </script>

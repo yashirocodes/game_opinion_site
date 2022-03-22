@@ -5,7 +5,7 @@
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <img class="logo-site" src="../assets/img/logo.png" alt="" />
-            GameExperience</a
+            Game Opinion Site</a
           >
           <button
             class="navbar-toggler"

@@ -65,7 +65,13 @@ const store = createStore({
       const { opiniones } = state
       const opinion = opiniones.find((o) => o.id === id)
       return opinion
-    }
+    },
+    getJuegoById:(state) => (id) => {
+      const { juegos } = state
+      const juego = juegos.find((j) => j.id === id)
+      return juego
+    },
+    
   },
 });
 

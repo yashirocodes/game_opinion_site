@@ -39,7 +39,7 @@
         <div class="modal-content">
           <div class="modal-body">
             <div>
-              <h4>Agregar una opinion para</h4>
+              <h4>Agregar una opinion para el juego {{ juegoSelected.name }}</h4>
               <hr />
               <div>
                 <label class="form-label">Nombre</label>
@@ -63,7 +63,6 @@
                 @click="agregarOpinion" class="btn btn-primary">
                   Agregar
                 </button>
-                {{opinion}}
               </div>
             </div>
           </div>
@@ -90,12 +89,15 @@ export default {
   },
   methods: {
     ...mapMutations(["AGREGAR_OPINIONES"]),
+    
     agregarOpinion() {
+
       const { gameSelected } = this;
       const opinion = {
         ...this.opinion,
         usuario: { ...this.opinion.usuario },
       };
+
       opinion.idJuego = gameSelected
       opinion.id = Math.floor(Math.random() * 999);
       this.AGREGAR_OPINIONES(opinion)
@@ -107,7 +109,12 @@ export default {
   },
   computed: {
     ...mapState(["juegos","opiniones"]),
-    ...mapGetters(["getJuegosAndOpiniones"])
+    ...mapGetters(["getJuegosAndOpiniones", "getJuegoById"]),
+    juegoSelected(){
+      const { gameSelected } = this
+      return this.getJuegoById(gameSelected) || {}
+    }
+
   },
 };
 </script>
