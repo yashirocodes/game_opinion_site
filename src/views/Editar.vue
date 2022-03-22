@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div v-if="!opinion">No existe una opinión con este ID</div>
+    <div v-if="!opinion" class="container my-3">
+      <div class="alert alert-danger">
+        No existe el este id para editar.
+      </div>
+    </div>
     <div v-else>
       <h1 class="text-center my-4">Editando la opinion del juego</h1>
       <div class="container">

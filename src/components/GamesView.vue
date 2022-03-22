@@ -5,7 +5,7 @@
         <h1 class="text-center my-4">Lista de Juegos Disponibles</h1>
 
         <div class="row">
-          <div class="col-3" v-for="(juego, i) in juegos" :key="i">
+          <div class="col-12 col-lg-3" v-for="(juego, i) in juegos" :key="i">
             <div class="card">
               <img class="card-img-top" :src="juego.background_image" alt="" />
               <div class="card-body">
