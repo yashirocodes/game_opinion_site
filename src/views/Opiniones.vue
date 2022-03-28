@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{getJuegosAndOpiniones}}
     <div v-if="existenOpiniones" class="container my-3">
       <div class="alert alert-danger text-center">
         <h5>

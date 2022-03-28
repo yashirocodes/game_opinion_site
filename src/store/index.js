@@ -29,7 +29,7 @@ const store = createStore({
       const { data: juegos } = response;
       commit("SET_GAMES", juegos);
     },
-    modificar_Opinion({ commit, state }, opinion) {
+    modificar_Opinion( { commit, state }, opinion) {
       const { opiniones } = state;
       const { id } = opinion;
       const indiceDeLaOpinion = opiniones.findIndex((o) => o.id === id);
@@ -49,7 +49,6 @@ const store = createStore({
       opiniones.forEach((opinion) => {
         const juegoRelacionadoConLaOpinion = juegos.find((juego) => {
           return juego.id === opinion.idJuego;
-          console.log(juego.id)
         });
         
         const JuegoYOpinionUnificada = {

@@ -21,7 +21,8 @@
                 </li>
               </ul>
               <div class="card-footer d-flex justify-content-center">
-                <button @click="gameSelected = juego.id"
+                <button
+                  @click="gameSelected = juego.id"
                   class="btn btn-primary"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
@@ -39,7 +40,9 @@
         <div class="modal-content">
           <div class="modal-body">
             <div>
-              <h4>Agregar una opinion para el juego {{ juegoSelected.name }}</h4>
+              <h4>
+                Agregar una opinion para el juego {{ juegoSelected.name }}
+              </h4>
               <hr />
               <div>
                 <label class="form-label">Nombre</label>
@@ -57,10 +60,12 @@
                 ></textarea>
               </div>
               <div class="my-2">
-                <button 
-                data-bs-toggle="modal"
+                <button
+                  data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                @click="agregarOpinion" class="btn btn-primary">
+                  @click="agregarOpinion"
+                  class="btn btn-primary"
+                >
                   Agregar
                 </button>
               </div>
@@ -89,32 +94,29 @@ export default {
   },
   methods: {
     ...mapMutations(["AGREGAR_OPINIONES"]),
-    
-    agregarOpinion() {
 
+    agregarOpinion() {
       const { gameSelected } = this;
       const opinion = {
         ...this.opinion,
         usuario: { ...this.opinion.usuario },
       };
 
-      opinion.idJuego = gameSelected
+      opinion.idJuego = gameSelected;
       opinion.id = Math.floor(Math.random() * 999);
-      this.AGREGAR_OPINIONES(opinion)
+      this.AGREGAR_OPINIONES(opinion);
 
       this.opinion.usuario = { nombre: "" };
       this.opinion.descripcion = "";
-
     },
   },
   computed: {
-    ...mapState(["juegos","opiniones"]),
+    ...mapState(["juegos", "opiniones"]),
     ...mapGetters(["getJuegosAndOpiniones", "getJuegoById"]),
-    juegoSelected(){
-      const { gameSelected } = this
-      return this.getJuegoById(gameSelected) || {}
-    }
-
+    juegoSelected() {
+      const { gameSelected } = this;
+      return this.getJuegoById(gameSelected) || {};
+    },
   },
 };
 </script>
